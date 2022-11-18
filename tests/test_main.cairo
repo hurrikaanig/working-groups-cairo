@@ -61,3 +61,14 @@ func test_remove_coordinators{syscall_ptr: felt*, range_check_ptr, pedersen_ptr:
     assert remove_coor_group.coordinators_len = 1;
     return ();
 }
+
+@external
+func test_add_proposal{syscall_ptr: felt*, range_check_ptr, pedersen_ptr: HashBuiltin*}() {
+    let (group) = Group.init();
+
+    let (new_group) = Group.add_proposal(group, 19);
+
+    assert new_group.proposals[0] = 19;
+    assert new_group.proposals_len = 1;
+    return ();
+}

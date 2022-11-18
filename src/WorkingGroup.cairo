@@ -127,8 +127,8 @@ namespace Group {
 
     func add_proposal{syscall_ptr: felt*, pedersen_ptr: HashBuiltin*, range_check_ptr} (
         _working_group: WorkingGroup, _proposal: felt
-    ) {
-        _working_group.proposals[_working_group.coordinators_len] = _proposal;
+    ) -> (working_group: WorkingGroup){
+        assert _working_group.proposals[_working_group.proposals_len] = _proposal;
 
         let new_group = WorkingGroup(
             subsidiaries = _working_group.subsidiaries,
